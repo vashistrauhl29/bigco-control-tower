@@ -274,17 +274,18 @@ elif selected_module == "Security Sandbox":
     render_security_page()
 
 elif selected_module == "RAG Chatbot":
-    # CRITICAL FIX: Force scroll to top to prevent Chat Input from stealing focus
+    render_chatbot_page()
+    
+    # CRITICAL FIX: Script must run AFTER the chatbot renders to override focus
     components.html(
         """
             <script>
-                // Wait a brief moment for the page to render, then force scroll to top
+                // Wait for the chat input to load, then force scroll to top
                 setTimeout(function() {
                     window.parent.document.querySelector('section.main').scrollTo(0, 0);
                     window.parent.document.querySelector(".stApp").scrollTo(0, 0);
-                }, 100);
+                }, 500); // Increased delay to 500ms to ensure it wins the race
             </script>
         """,
         height=0
     )
-    render_chatbot_page()
