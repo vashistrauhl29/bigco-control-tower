@@ -35,26 +35,14 @@ def load_custom_css():
         @font-face {{ font-family: 'GleanSans'; src: url(data:font/ttf;base64,{font_reg}) format('truetype'); font-weight: 400; }}
         @font-face {{ font-family: 'GleanSans'; src: url(data:font/ttf;base64,{font_bold}) format('truetype'); font-weight: 700; }}
 
-        * {{
+        /* TARGET TEXT ELEMENTS ONLY (Safe Mode) - Prevents Icon Corruption */
+        html, body, [class*="css"], .stMarkdown, .stSidebar, 
+        h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, select, label, li, a {{
             font-family: 'GleanSans', sans-serif !important;
             letter-spacing: -0.3px !important;
         }}
 
         .stApp {{ background: linear-gradient(180deg, #FFFFFF 0%, #F0F4FF 100%) !important; background-attachment: fixed !important; }}
-
-        /* --- CRITICAL FIX: RESTORE ICONS --- */
-        /* This prevents "_arrow_right" and "check" text artifacts */
-        .material-symbols-rounded {{
-            font-family: 'Material Symbols Rounded' !important;
-            font-weight: normal !important;
-            letter-spacing: normal !important;
-        }}
-        
-        /* Specific fix for Expanders and Status Widgets */
-        div[data-testid="stExpander"] svg, 
-        div[data-testid="stStatusWidget"] svg {{
-            font-family: 'Material Symbols Rounded' !important;
-        }}
 
         /* --- 2. TABS: DYNAMIC TEXT COLOUR --- */
         button[data-baseweb="tab"] {{
@@ -72,7 +60,8 @@ def load_custom_css():
             color: #FFFFFF !important;
             box-shadow: 0 4px 12px rgba(39, 80, 221, 0.3);
         }}
-        button[data-baseweb="tab"][aria-selected="true"] * {{ color: #FFFFFF !important; }}
+        /* Force White Text on Active Tab */
+        button[data-baseweb="tab"][aria-selected="true"] p {{ color: #FFFFFF !important; }}
 
         button[data-baseweb="tab"][aria-selected="false"] {{
             background: #EFF6FF !important;
@@ -88,7 +77,7 @@ def load_custom_css():
             padding: 12px 28px !important;
             font-weight: 600 !important;
         }}
-        div.stButton > button * {{ color: #FFFFFF !important; }}
+        div.stButton > button p {{ color: #FFFFFF !important; }}
 
         /* --- 4. PILLS & CARDS --- */
         .glean-pill {{
