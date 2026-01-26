@@ -35,16 +35,39 @@ def load_custom_css():
         @font-face {{ font-family: 'GleanSans'; src: url(data:font/ttf;base64,{font_reg}) format('truetype'); font-weight: 400; }}
         @font-face {{ font-family: 'GleanSans'; src: url(data:font/ttf;base64,{font_bold}) format('truetype'); font-weight: 700; }}
 
-        /* TARGET TEXT ELEMENTS ONLY (Safe Mode) - Prevents Icon Corruption */
-        html, body, [class*="css"], .stMarkdown, .stSidebar, 
-        h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, select, label, li, a {{
+        /* --- 2. INTELLIGENT FONT TARGETING --- */
+        /* Apply to the Main App Container so mostly everything inherits it */
+        .stApp {{ 
+            font-family: 'GleanSans', sans-serif !important;
+            color: #0F172A !important;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F0F4FF 100%) !important; 
+            background-attachment: fixed !important; 
+        }}
+        
+        /* Apply to Specific Text Elements (Safe List) */
+        h1, h2, h3, h4, h5, h6, p, a, li, label, input, textarea, select, button {{
             font-family: 'GleanSans', sans-serif !important;
             letter-spacing: -0.3px !important;
         }}
+        
+        /* Apply to Streamlit Specific Text Containers */
+        .stMarkdown, .stWidgetLabel, .stTextInput, .stSelectbox {{
+            font-family: 'GleanSans', sans-serif !important;
+        }}
 
-        .stApp {{ background: linear-gradient(180deg, #FFFFFF 0%, #F0F4FF 100%) !important; background-attachment: fixed !important; }}
+        /* --- 3. ICON PROTECTION (Critical Fix) --- */
+        /* Explicitly protect the Material Symbols font used by Streamlit icons */
+        .material-symbols-rounded {{
+            font-family: 'Material Symbols Rounded' !important;
+            font-weight: normal !important;
+            font-style: normal !important;
+            letter-spacing: normal !important;
+            text-transform: none !important;
+            white-space: nowrap !important;
+            direction: ltr !important;
+        }}
 
-        /* --- 2. TABS: DYNAMIC TEXT COLOUR --- */
+        /* --- 4. TABS: DYNAMIC TEXT COLOUR --- */
         button[data-baseweb="tab"] {{
             border-radius: 999px !important;
             padding: 10px 32px !important;
@@ -60,7 +83,7 @@ def load_custom_css():
             color: #FFFFFF !important;
             box-shadow: 0 4px 12px rgba(39, 80, 221, 0.3);
         }}
-        /* Force White Text on Active Tab */
+        /* Target paragraph inside tab specifically */
         button[data-baseweb="tab"][aria-selected="true"] p {{ color: #FFFFFF !important; }}
 
         button[data-baseweb="tab"][aria-selected="false"] {{
@@ -68,7 +91,7 @@ def load_custom_css():
             color: #64748B !important;
         }}
 
-        /* --- 3. BUTTONS: ALWAYS WHITE TEXT --- */
+        /* --- 5. BUTTONS: ALWAYS WHITE TEXT --- */
         div.stButton > button {{
             border-radius: 99px !important;
             background: linear-gradient(90deg, #2750DD 0%, #7C3AED 100%) !important;
@@ -79,7 +102,7 @@ def load_custom_css():
         }}
         div.stButton > button p {{ color: #FFFFFF !important; }}
 
-        /* --- 4. PILLS & CARDS --- */
+        /* --- 6. PILLS & CARDS --- */
         .glean-pill {{
             display: inline-flex; align-items: center; justify-content: center;
             padding: 8px 24px; border-radius: 999px; font-weight: 700; font-size: 14px;
