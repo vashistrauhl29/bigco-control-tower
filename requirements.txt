@@ -1,0 +1,8 @@
+streamlit
+pandas
+plotly
+graphviz
+langchain
+langchain-openai
+python-dotenv
+watchdog

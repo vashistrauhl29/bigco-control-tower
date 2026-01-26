@@ -1,0 +1,34 @@
+BigCo General Company Policies
+================================
+
+COMPANY HOLIDAYS 2026
+- New Year's Day: January 1
+- Memorial Day: May 25
+- Independence Day: July 4
+- Labor Day: September 7
+- Thanksgiving: November 26-27
+- Christmas: December 25
+
+EXPENSE POLICY
+- Meal expenses: Up to $50 per day for business travel
+- Hotel accommodations: Standard rate up to $200 per night
+- Mileage reimbursement: $0.67 per mile
+- Submit expense reports within 30 days of incurring expenses
+- All receipts must be attached for expenses over $25
+
+REMOTE WORK POLICY
+- Employees may work remotely up to 3 days per week
+- Core hours: 10am - 3pm local time
+- Must be available on Slack during working hours
+- Monthly in-person team meetings required
+
+DRESS CODE
+- Business casual attire is standard
+- Casual Fridays permitted
+- Client-facing meetings require business formal
+
+TIME OFF
+- Vacation days: 15 days per year
+- Sick leave: 10 days per year
+- Personal days: 3 days per year
+- Time off requests must be submitted 2 weeks in advance

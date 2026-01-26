@@ -1,0 +1,50 @@
+CONFIDENTIAL - ENGINEERING DEPARTMENT ONLY
+===========================================
+
+PROJECT X SPECIFICATIONS
+- Code name: Phoenix Rising
+- Launch date: Q3 2026
+- Budget: $2.5M
+- Team size: 12 engineers
+
+TECHNICAL ARCHITECTURE
+- Primary stack: Python 3.11, React 18, PostgreSQL 15
+- Cloud provider: AWS (us-east-1 region)
+- CI/CD: GitHub Actions
+- Container orchestration: Kubernetes 1.28
+
+SERVER CREDENTIALS
+Production Database:
+- Host: prod-db-01.bigco.internal
+- Port: 5432
+- Username: phoenix_admin
+- Password: Ph0en!x_Pr0d_2026_Secure
+
+Staging Environment:
+- Host: staging-db-01.bigco.internal
+- Port: 5432
+- Username: phoenix_stage
+- Password: St4g!ng_Ph0en1x_2026
+
+API Keys:
+- OpenAI API: sk-proj-abc123xyz789
+- Stripe Secret: sk_live_xyz789abc123
+- AWS Access Key: AKIA4567890ABCDEF
+
+SECURITY PROTOCOLS
+- All commits must be signed with GPG keys
+- Code reviews required for all PRs
+- Secrets must be stored in AWS Secrets Manager
+- No credentials in code repositories
+- Monthly security audits required
+
+ON-CALL ROTATION
+- Week 1: Alice Chen
+- Week 2: Bob Martinez
+- Week 3: Carol Johnson
+- Week 4: David Kim
+
+INCIDENT RESPONSE
+- P0 incidents: Page on-call engineer immediately
+- P1 incidents: Notify within 30 minutes
+- All incidents require post-mortem within 48 hours
