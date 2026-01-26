@@ -31,7 +31,7 @@ def load_custom_css():
 
     st.markdown(f"""
         <style>
-        /* --- 1. GLOBAL RESET (The Baseline) --- */
+        /* --- 1. GLOBAL RESET --- */
         @font-face {{ font-family: 'GleanSans'; src: url(data:font/ttf;base64,{font_reg}) format('truetype'); font-weight: 400; }}
         @font-face {{ font-family: 'GleanSans'; src: url(data:font/ttf;base64,{font_bold}) format('truetype'); font-weight: 700; }}
 
@@ -42,8 +42,21 @@ def load_custom_css():
 
         .stApp {{ background: linear-gradient(180deg, #FFFFFF 0%, #F0F4FF 100%) !important; background-attachment: fixed !important; }}
 
+        /* --- CRITICAL FIX: RESTORE ICONS --- */
+        /* This prevents "_arrow_right" and "check" text artifacts */
+        .material-symbols-rounded {{
+            font-family: 'Material Symbols Rounded' !important;
+            font-weight: normal !important;
+            letter-spacing: normal !important;
+        }}
+        
+        /* Specific fix for Expanders and Status Widgets */
+        div[data-testid="stExpander"] svg, 
+        div[data-testid="stStatusWidget"] svg {{
+            font-family: 'Material Symbols Rounded' !important;
+        }}
+
         /* --- 2. TABS: DYNAMIC TEXT COLOUR --- */
-        /* BASE TAB STYLE */
         button[data-baseweb="tab"] {{
             border-radius: 999px !important;
             padding: 10px 32px !important;
@@ -54,21 +67,16 @@ def load_custom_css():
             transition: all 0.2s ease;
         }}
 
-        /* SELECTED TAB (Blue Gradient Background -> WHITE Text) */
         button[data-baseweb="tab"][aria-selected="true"] {{
             background: linear-gradient(90deg, #2750DD 0%, #7C3AED 100%) !important;
-            color: #FFFFFF !important;  /* FORCE WHITE */
+            color: #FFFFFF !important;
             box-shadow: 0 4px 12px rgba(39, 80, 221, 0.3);
         }}
-        /* *** CRITICAL FIX: FORCE INNER TEXT WHITE *** */
-        button[data-baseweb="tab"][aria-selected="true"] * {{
-            color: #FFFFFF !important;
-        }}
+        button[data-baseweb="tab"][aria-selected="true"] * {{ color: #FFFFFF !important; }}
 
-        /* UNSELECTED TAB (Light Background -> DARK Text) */
         button[data-baseweb="tab"][aria-selected="false"] {{
             background: #EFF6FF !important;
-            color: #64748B !important; /* DARK GREY */
+            color: #64748B !important;
         }}
 
         /* --- 3. BUTTONS: ALWAYS WHITE TEXT --- */
@@ -80,12 +88,9 @@ def load_custom_css():
             padding: 12px 28px !important;
             font-weight: 600 !important;
         }}
-        /* *** CRITICAL FIX: FORCE INNER TEXT WHITE *** */
-        div.stButton > button * {{
-            color: #FFFFFF !important;
-        }}
+        div.stButton > button * {{ color: #FFFFFF !important; }}
 
-        /* --- 4. PILLS & CARDS (Keep existing styles) --- */
+        /* --- 4. PILLS & CARDS --- */
         .glean-pill {{
             display: inline-flex; align-items: center; justify-content: center;
             padding: 8px 24px; border-radius: 999px; font-weight: 700; font-size: 14px;
@@ -105,7 +110,6 @@ def load_custom_css():
         .pill-blue {{ background: linear-gradient(90deg, #E0F2FE 0%, #7DD3FC 100%); }}
         .pill-mixed {{ background: linear-gradient(90deg, #FEF9C3 0%, #FBCFE8 100%); }}
 
-        /* --- EXISTING BADGES --- */
         .badge-granted {{
             background: linear-gradient(90deg, #10B981 0%, #059669 100%);
             color: white; padding: 6px 16px; border-radius: 99px;
@@ -151,7 +155,6 @@ def load_custom_css():
         .glean-card-secondary h3 {{ color: rgba(255,255,255,0.9) !important; font-size: 14px !important; margin: 0 0 10px 0 !important; text-transform: uppercase; }}
         .glean-card-secondary h1 {{ color: white !important; font-size: 36px !important; margin: 0 0 10px 0 !important; font-weight: 700 !important; }}
 
-        /* Cleanup UI */
         div[data-baseweb="tab-highlight"] {{ display: none !important; }}
         div[data-baseweb="tab-list"] {{ gap: 12px; padding-bottom: 12px; background: transparent !important; }}
         div[data-testid="stSliderTickBarMin"], div[data-testid="stSliderTickBarMax"] {{ background: transparent !important; color: #0F172A !important; }}
