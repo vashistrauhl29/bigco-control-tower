@@ -274,18 +274,27 @@ elif selected_module == "Security Sandbox":
     render_security_page()
 
 elif selected_module == "RAG Chatbot":
-    render_chatbot_page()
+    # 1. Force an invisible element at the top to anchor the scroll
+    st.markdown('<div id="top-anchor" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px;"></div>', unsafe_allow_html=True)
     
-    # CRITICAL FIX: Script must run AFTER the chatbot renders to override focus
-    components.html(
-        """
-            <script>
-                // Wait for the chat input to load, then force scroll to top
-                setTimeout(function() {
-                    window.parent.document.querySelector('section.main').scrollTo(0, 0);
-                    window.parent.document.querySelector(".stApp").scrollTo(0, 0);
-                }, 500); // Increased delay to 500ms to ensure it wins the race
-            </script>
-        """,
-        height=0
-    )
+    # 2. Inject CSS to stop auto-scroll behavior
+    st.markdown("""
+        <style>
+            /* Stop the browser from scrolling to the focus element */
+            .stApp {
+                overflow-anchor: none !important;
+            }
+            /* Ensure the top anchor is prioritized */
+            #top-anchor {
+                scroll-snap-align: start;
+            }
+        </style>
+        <script>
+            // Hard force scroll to top on load
+            window.scrollTo(0, 0);
+            var main = window.parent.document.querySelector(".main");
+            if (main) { main.scrollTop = 0; }
+        </script>
+    """, unsafe_allow_html=True)
+
+    render_chatbot_page()
