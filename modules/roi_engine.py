@@ -101,13 +101,14 @@ def render_roi_page():
     st.markdown('<div style="height: 40px;"></div>', unsafe_allow_html=True)
 
     # --- Cumulative Graph (Payback Logic) ---
-    months = list(range(11))
-    # Month 0 starts at negative Implementation Cost
-    # Month 1 = -Imp + NetSavings, etc.
+    months = list(range(13))  # 0 to 12 months for a full year
     cumulative_savings = [-implementation_cost + (monthly_net_savings * m) for m in months]
 
-    # Find Payback Month (First month where value > 0)
-    payback_month = next((m for m, val in enumerate(cumulative_savings) if val > 0), None)
+    # Calculate precise fractional payback period
+    if monthly_net_savings > 0:
+        payback_period = implementation_cost / monthly_net_savings
+    else:
+        payback_period = None
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(
@@ -116,23 +117,36 @@ def render_roi_page():
         mode='lines+markers',
         name='Net Cash Flow',
         line=dict(color='#2750DD', width=3),
-        # TRANSPARENT BLUE FILL
         fill='tozeroy',
         fillcolor='rgba(52, 60, 237, 0.2)'
     ))
 
-    # Add "Break Even" Annotation if applicable
-    if payback_month:
-        fig.add_vline(x=payback_month, line_width=1, line_dash="dash", line_color="#10B981")
+    # Add "Break Even" Annotation with high precision
+    if payback_period is not None and payback_period <= 12:
+        # Determine human-readable label
+        if payback_period < 0.1: # Very fast payback
+            days = max(1, round(payback_period * 30))
+            label = f"Break Even: {days} Day{'s' if days > 1 else ''}"
+        elif payback_period < 1:
+            days = round(payback_period * 30)
+            label = f"Break Even: {days} Days"
+        else:
+            label = f"Break Even: {payback_period:.1f} Months"
+
+        fig.add_vline(x=payback_period, line_width=2, line_dash="dash", line_color="#10B981")
         fig.add_annotation(
-            x=payback_month, 
+            x=payback_period, 
             y=0, 
-            text="<span style='color:#10B981; font-weight:bold; font-size:15px'>Break Even</span>", 
+            text=f"<span style='color:#10B981; font-weight:bold; font-size:14px; background-color:white; padding:2px;'>{label}</span>", 
             showarrow=True, 
             arrowhead=1,
             arrowwidth=3,
             arrowcolor="#10B981",
-            ay=-44
+            ay=-44,
+            bgcolor="white",
+            bordercolor="#10B981",
+            borderwidth=1,
+            borderpad=4
         )
 
     fig.update_layout(
