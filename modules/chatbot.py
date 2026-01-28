@@ -193,7 +193,7 @@ def render_chatbot_page():
     if include_engineering:
         st.sidebar.markdown("""
         <div class="glean-pill pill-blue" style="font-size:12px;">
-            ℹ️ Access Level: Engineering (All Documents)
+            ℹ️ Access Level: Engineering
         </div>
         """, unsafe_allow_html=True)
         role_display = "Senior Engineer"
