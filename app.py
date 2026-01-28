@@ -185,8 +185,11 @@ def load_custom_css():
 
         .glean-card-primary {{
             background: linear-gradient(135deg, #2750DD 0%, #7C3AED 100%);
-            border-radius: 16px; padding: 24px;
+            border-radius: 16px; padding: 24px; color: white !important;
             box-shadow: 0 10px 15px -3px rgba(39, 80, 221, 0.2); margin-bottom: 20px;
+        }}
+        .glean-lime-text {{
+            color: #D8FD49 !important;
         }}
         .glean-card-primary h3 {{ color: rgba(255,255,255,1.0) !important; font-size: 22px !important; margin: 0 0 10px 0 !important; text-transform: uppercase; letter-spacing: 1.2px !important; }}
         .glean-card-primary h1 {{ color: white !important; font-size: 36px !important; margin: 0 0 10px 0 !important; font-weight: 700 !important; }}
