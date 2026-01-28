@@ -189,12 +189,12 @@ def load_custom_css():
         .glean-card-primary h1 {{ color: white !important; font-size: 36px !important; margin: 0 0 10px 0 !important; font-weight: 700 !important; }}
 
         .glean-card-secondary {{
-            background: linear-gradient(135deg, #0EA5E9 0%, #3B82F6 100%);
-            border-radius: 16px; padding: 24px; color: white !important;
+            background: linear-gradient(135deg, #0EA5E9 0%, #D8FD49 100%);
+            border-radius: 16px; padding: 24px; color: #0F172A !important;
             box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.2); margin-bottom: 20px;
         }}
-        .glean-card-secondary h3 {{ color: rgba(255,255,255,0.9) !important; font-size: 22px !important; margin: 0 0 10px 0 !important; text-transform: uppercase; letter-spacing: 1.2px !important; }}
-        .glean-card-secondary h1 {{ color: white !important; font-size: 36px !important; margin: 0 0 10px 0 !important; font-weight: 700 !important; }}
+        .glean-card-secondary h3 {{ color: rgba(15, 23, 42, 0.8) !important; font-size: 22px !important; margin: 0 0 10px 0 !important; text-transform: uppercase; letter-spacing: 1.2px !important; }}
+        .glean-card-secondary h1 {{ color: #0F172A !important; font-size: 36px !important; margin: 0 0 10px 0 !important; font-weight: 700 !important; }}
 
         div[data-baseweb="tab-highlight"] {{ display: none !important; }}
         div[data-baseweb="tab-list"] {{ gap: 12px; padding-bottom: 12px; background: transparent !important; }}
