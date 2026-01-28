@@ -71,7 +71,7 @@ def render_roi_page():
         <div class="glean-card-primary">
             <h3 style="color:white; margin:0; font-size:36px;">Projected Annual Net Savings</h3>
             <h1 style="color:white; margin:10px 0; font-size:36px;">${annual_net_savings:,.0f}</h1>
-            <div style="color:#D8FD49 !important; font-weight:700 !important;">⬆ {efficiency}% Efficiency Model</div>
+            <div style="font-weight:700 !important;"><span style="color:#D8FD49 !important;">⬆ {efficiency}% Efficiency Model</span></div>
         </div>
         """, unsafe_allow_html=True)
 
