@@ -81,8 +81,10 @@ def load_custom_css():
         .stCheckbox label p {{
             font-family: 'PolySans Neutral', sans-serif !important;
         }}
-        .stRadio > label {{
+        /* Target the Radio Button Label "Select Module:" specifically */
+        section[data-testid="stSidebar"] .stRadio > label {{
             font-weight: 700 !important;
+            font-size: 14px !important;
         }}
 
         /* REDUCE TOP PADDING */
