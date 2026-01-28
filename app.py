@@ -81,6 +81,9 @@ def load_custom_css():
         .stCheckbox label p {{
             font-family: 'PolySans Neutral', sans-serif !important;
         }}
+        .stRadio > label {{
+            font-weight: 700 !important;
+        }}
 
         /* REDUCE TOP PADDING */
         .block-container {{
