@@ -69,18 +69,18 @@ def render_roi_page():
     with col1:
         st.markdown(f"""
         <div class="glean-card-primary">
-            <h3 style="color:rgba(255,255,255,1); margin:0; font-size:36px;">Projected Annual Net Savings</h3>
+            <h3 style="color:white; margin:0; font-size:36px;">Projected Annual Net Savings</h3>
             <h1 style="color:white; margin:10px 0; font-size:36px;">${annual_net_savings:,.0f}</h1>
-            <div style="color:#D8FD49; font-weight:700;">⬆ {efficiency}% Efficiency Model</div>
+            <div style="color:#D8FD49 !important; font-weight:700 !important;">⬆ {efficiency}% Efficiency Model</div>
         </div>
         """, unsafe_allow_html=True)
 
     with col2:
         st.markdown(f"""
         <div class="glean-card-secondary">
-            <h3 style="color:rgba(255,255,255,1); margin:0; font-size:36px;">Monthly Net Savings</h3>
+            <h3 style="color:white; margin:0; font-size:36px;">Monthly Net Savings</h3>
             <h1 style="color:white; margin:10px 0; font-size:36px;">${monthly_net_savings:,.0f}</h1>
-            <div style="color:rgba(255,255,255,0.9);">After License Costs</div>
+            <div style="color:white; font-weight:700;">After License Costs</div>
         </div>
         """, unsafe_allow_html=True)
 
