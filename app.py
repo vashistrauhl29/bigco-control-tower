@@ -61,6 +61,14 @@ def load_custom_css():
             font-family: 'PolySans Neutral', sans-serif !important;
         }}
 
+        /* --- SIDEBAR SPECIFIC OVERRIDES --- */
+        section[data-testid="stSidebar"] * {{
+            font-family: 'PolySans Neutral', sans-serif !important;
+        }}
+        .stCheckbox label p {{
+            font-family: 'PolySans Neutral', sans-serif !important;
+        }}
+
         /* REDUCE TOP PADDING */
         .block-container {{
             padding-top: 3.5rem !important;

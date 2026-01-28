@@ -111,12 +111,11 @@ def render_roi_page():
         fig.add_annotation(
             x=payback_month, 
             y=0, 
-            text="<b>Break Even</b>", 
+            text="<span style='color:#10B981; font-weight:bold; font-size:15px'>Break Even</span>", 
             showarrow=True, 
             arrowhead=1,
             arrowwidth=3,
             arrowcolor="#10B981",
-            font=dict(color="#10B981", size=15),
             ay=-44
         )
 

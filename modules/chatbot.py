@@ -392,7 +392,7 @@ def render_chatbot_page():
 
     with col1:
         st.markdown("""
-        <div class="glean-tech-box" style="min-height: 140px;">
+        <div class="glean-tech-box" style="min-height: 170px;">
             <h4 style="margin-top:0;">🛡️ Accuracy & Trust</h4>
             <p style="font-size:14px; margin:0;">Responses are grounded solely in the provided context window. Zero-retention policy active.</p>
         </div>
@@ -400,7 +400,7 @@ def render_chatbot_page():
 
     with col2:
         st.markdown("""
-        <div class="glean-tech-box" style="min-height: 140px;">
+        <div class="glean-tech-box" style="min-height: 170px;">
             <h4 style="margin-top:0;">🔒 Security & Compliance</h4>
             <p style="font-size:14px; margin:0;">Role-Based Access Control (RBAC) enforced. Data encrypted in transit (TLS 1.3).</p>
         </div>
