@@ -154,7 +154,7 @@ def render_roi_page():
             <p><strong>Methodology:</strong> 70% Active Adoption Rate assumed.</p>
             <ul style="list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 8px;">
-                    1. <strong>Gross Savings:</strong> {employees:,} employees × 0.7 adoption × {daily_saved_hours:.2f} hrs × ${wage}/hr × 22 days =
+                    1. <strong>Gross Savings:</strong> {employees:,} employees × 0.7 adoption × <strong>{daily_saved_hours:.2f} hrs saved</strong> ({efficiency}% of {search_time}h) × ${wage}/hr × 22 days =
                     <span style="font-weight: 800; font-size: 1.1em; color: #2750DD;">${monthly_gross_savings:,.0f}</span>
                 </li>
                 <li style="margin-bottom: 8px;">
