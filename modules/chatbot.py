@@ -200,7 +200,7 @@ def render_chatbot_page():
     else:
         st.sidebar.markdown("""
         <div class="glean-pill pill-blue" style="font-size:12px;">
-            ℹ️ Access Level: General (Public Only)
+            ℹ️ Access Level: General
         </div>
         """, unsafe_allow_html=True)
         role_display = "Sales Representative"
@@ -342,6 +342,7 @@ def render_chatbot_page():
             st.rerun()
 
     # Show context preview
+    st.markdown('<div style="margin-top: -30px;"></div>', unsafe_allow_html=True)
     with st.expander("🔍 Preview Current Context (What the AI can see)"):
         context_text, context_sources = load_document_context(include_engineering)
         st.text_area(
@@ -354,7 +355,7 @@ def render_chatbot_page():
         st.caption(f"**Total characters:** {len(context_text)} | **Sources:** {', '.join(context_sources)}")
 
     # RAG Architecture Diagram
-    st.markdown("---")
+    st.markdown('<div style="margin: 5px 0; border-top: 1px solid #E2E8F0;"></div>', unsafe_allow_html=True)
     st.subheader("🏗️ RAG Architecture")
 
     col1, col2, col3 = st.columns(3)
@@ -384,14 +385,14 @@ def render_chatbot_page():
         """)
 
     # 3. TRUST CARDS (At the bottom)
-    st.markdown("---")
+    st.markdown('<div style="margin: 5px 0; border-top: 1px solid #E2E8F0;"></div>', unsafe_allow_html=True)
     st.subheader("✨ Key Benefits")
 
     col1, col2 = st.columns(2)
 
     with col1:
         st.markdown("""
-        <div class="glean-tech-box">
+        <div class="glean-tech-box" style="min-height: 140px;">
             <h4 style="margin-top:0;">🛡️ Accuracy & Trust</h4>
             <p style="font-size:14px; margin:0;">Responses are grounded solely in the provided context window. Zero-retention policy active.</p>
         </div>
@@ -399,7 +400,7 @@ def render_chatbot_page():
 
     with col2:
         st.markdown("""
-        <div class="glean-tech-box">
+        <div class="glean-tech-box" style="min-height: 140px;">
             <h4 style="margin-top:0;">🔒 Security & Compliance</h4>
             <p style="font-size:14px; margin:0;">Role-Based Access Control (RBAC) enforced. Data encrypted in transit (TLS 1.3).</p>
         </div>

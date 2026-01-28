@@ -27,33 +27,43 @@ def load_custom_css():
                 return base64.b64encode(f.read()).decode()
         except Exception: return ""
 
-    font_reg = get_font_base64("assets/fonts/Glean1.ttf")
-    font_bold = get_font_base64("assets/fonts/Glean2.ttf")
+    font_neutral = get_font_base64("assets/fonts/Glean1.ttf")
+    font_median = get_font_base64("assets/fonts/Glean3.ttf")
 
     st.markdown(f"""
         <style>
         /* --- 1. GLOBAL RESET --- */
-        @font-face {{ font-family: 'GleanSans'; src: url(data:font/ttf;base64,{font_reg}) format('truetype'); font-weight: 400; }}
-        @font-face {{ font-family: 'GleanSans'; src: url(data:font/ttf;base64,{font_bold}) format('truetype'); font-weight: 700; }}
+        @font-face {{ font-family: 'PolySans Neutral'; src: url(data:font/ttf;base64,{font_neutral}) format('truetype'); font-weight: 400; }}
+        @font-face {{ font-family: 'PolySans Median'; src: url(data:font/ttf;base64,{font_median}) format('truetype'); font-weight: 700; }}
 
         /* --- 2. INTELLIGENT FONT TARGETING --- */
         /* Apply to the Main App Container so mostly everything inherits it */
         .stApp {{ 
-            font-family: 'GleanSans', sans-serif !important;
+            font-family: 'PolySans Neutral', sans-serif !important;
             color: #0F172A !important;
             background: linear-gradient(180deg, #FFFFFF 0%, #F0F4FF 100%) !important; 
             background-attachment: fixed !important; 
         }}
         
         /* Apply to Specific Text Elements (Safe List) */
-        h1, h2, h3, h4, h5, h6, p, a, li, label, input, textarea, select, button {{
-            font-family: 'GleanSans', sans-serif !important;
+        h1, h2, h3, h4, h5, h6 {{
+            font-family: 'PolySans Median', sans-serif !important;
+            letter-spacing: -0.3px !important;
+        }}
+        
+        p, a, li, label, input, textarea, select, button {{
+            font-family: 'PolySans Neutral', sans-serif !important;
             letter-spacing: -0.3px !important;
         }}
         
         /* Apply to Streamlit Specific Text Containers */
         .stMarkdown, .stWidgetLabel, .stTextInput, .stSelectbox {{
-            font-family: 'GleanSans', sans-serif !important;
+            font-family: 'PolySans Neutral', sans-serif !important;
+        }}
+
+        /* REDUCE TOP PADDING */
+        .block-container {{
+            padding-top: 3.5rem !important;
         }}
 
         /* --- 3. ICON PROTECTION (Critical Fix) --- */
@@ -157,7 +167,7 @@ def load_custom_css():
             border-radius: 16px; padding: 24px; color: white !important;
             box-shadow: 0 10px 15px -3px rgba(39, 80, 221, 0.2); margin-bottom: 20px;
         }}
-        .glean-card-primary h3 {{ color: rgba(255,255,255,0.9) !important; font-size: 14px !important; margin: 0 0 10px 0 !important; text-transform: uppercase; }}
+        .glean-card-primary h3 {{ color: rgba(255,255,255,0.9) !important; font-size: 22px !important; margin: 0 0 10px 0 !important; text-transform: uppercase; letter-spacing: 1.2px !important; }}
         .glean-card-primary h1 {{ color: white !important; font-size: 36px !important; margin: 0 0 10px 0 !important; font-weight: 700 !important; }}
 
         .glean-card-secondary {{
@@ -165,7 +175,7 @@ def load_custom_css():
             border-radius: 16px; padding: 24px; color: white !important;
             box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.2); margin-bottom: 20px;
         }}
-        .glean-card-secondary h3 {{ color: rgba(255,255,255,0.9) !important; font-size: 14px !important; margin: 0 0 10px 0 !important; text-transform: uppercase; }}
+        .glean-card-secondary h3 {{ color: rgba(255,255,255,0.9) !important; font-size: 22px !important; margin: 0 0 10px 0 !important; text-transform: uppercase; letter-spacing: 1.2px !important; }}
         .glean-card-secondary h1 {{ color: white !important; font-size: 36px !important; margin: 0 0 10px 0 !important; font-weight: 700 !important; }}
 
         div[data-baseweb="tab-highlight"] {{ display: none !important; }}
@@ -194,7 +204,7 @@ def render_glean_header():
     ">
         <div style="display: flex; align-items: center; gap: 3rem;">
             <div style="
-                font-family: 'GleanSans', sans-serif;
+                font-family: 'PolySans Median', sans-serif;
                 font-size: 1.5rem;
                 font-weight: 700;
                 color: #2750DD;
@@ -232,7 +242,7 @@ def render_glean_header():
                 font-weight: 600;
                 font-size: 0.95rem;
                 cursor: pointer;
-                font-family: 'GleanSans', sans-serif;
+                font-family: 'PolySans Neutral', sans-serif;
             ">Sign In</button>
         </div>
     </div>
@@ -248,10 +258,10 @@ st.empty()
 
 # Main title with custom styling
 st.markdown("""
-    <h1 style='font-family: "GleanSans", sans-serif; font-weight: 700; font-size: 48px; color: #0F172A; margin-bottom: 0px;'>
+    <h1 style='font-family: "PolySans Median", sans-serif; font-weight: 700; font-size: 48px; color: #0F172A; margin-bottom: 0px;'>
         BigCo Deployment Control Tower
     </h1>
-    <p style='font-family: "GleanSans", sans-serif; font-size: 18px; color: #64748B; margin-bottom: 30px;'>
+    <p style='font-family: "PolySans Neutral", sans-serif; font-size: 18px; color: #64748B; margin-bottom: 30px;'>
         Outcomes & Value Engineering Dashboard
     </p>
 """, unsafe_allow_html=True)
@@ -290,10 +300,22 @@ elif selected_module == "RAG Chatbot":
             }
         </style>
         <script>
-            // Hard force scroll to top on load
-            window.scrollTo(0, 0);
-            var main = window.parent.document.querySelector(".main");
-            if (main) { main.scrollTop = 0; }
+            // Hard force scroll to top on load with retries to override Streamlit
+            function forceTop() {
+                window.scrollTo(0, 0);
+                // Try standard main container
+                var main = window.parent.document.querySelector(".main");
+                if (main) { main.scrollTop = 0; }
+                // Try modern Streamlit container
+                var scroller = window.parent.document.querySelector('[data-testid="stAppViewContainer"]');
+                if (scroller) { scroller.scrollTop = 0; }
+            }
+            
+            // Execute multiple times to catch race conditions
+            forceTop();
+            setTimeout(forceTop, 50);
+            setTimeout(forceTop, 150);
+            setTimeout(forceTop, 300);
         </script>
     """, unsafe_allow_html=True)
 

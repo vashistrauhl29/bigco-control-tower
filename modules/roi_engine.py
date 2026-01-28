@@ -1,10 +1,11 @@
 import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
+import time
 
 def render_roi_page():
     # Spacer
-    st.markdown('<div style="height: 20px;"></div>', unsafe_allow_html=True)
+    st.markdown('<div style="height: 12px;"></div>', unsafe_allow_html=True)
 
     # Use the new "Platform Overview" Pill for the Header
     st.markdown('<div class="pill-platform">💎 ROI & Value Engine</div>', unsafe_allow_html=True)
@@ -12,10 +13,35 @@ def render_roi_page():
     # --- Controls ---
     col1, col2 = st.columns(2)
     with col1:
-        employees = st.selectbox("Number of Employees", [2500, 5000, 10000, 25000], index=3)
+        employees = st.selectbox(
+            "Number of Employees", 
+            [2500, 5000, 10000, 25000], 
+            index=3,
+            format_func=lambda x: f"{x:,}"
+        )
         wage = st.number_input("Avg Hourly Wage ($)", value=60)
-        # NEW: Implementation Cost to show Payback Period
-        implementation_cost = st.number_input("Est. Implementation Cost ($)", value=50000, step=10000, help="One-time setup/training fees")
+        # Callback to format cost with commas
+        if "roi_imp_cost" not in st.session_state:
+            st.session_state.roi_imp_cost = "50,000"
+
+        def format_cost():
+            try:
+                value = int(st.session_state.roi_imp_cost.replace(",", ""))
+                st.session_state.roi_imp_cost = f"{value:,}"
+            except ValueError:
+                pass
+
+        # Use text_input with callback for auto-formatting
+        cost_input = st.text_input(
+            "Est. Implementation Cost ($)", 
+            key="roi_imp_cost",
+            on_change=format_cost,
+            help="One-time setup/training fees (e.g., 50,000)"
+        )
+        try:
+            implementation_cost = int(cost_input.replace(",", ""))
+        except ValueError:
+            implementation_cost = 0
     with col2:
         search_time = st.number_input("Daily Search Time (Hours/Employee)", value=1.8)
         efficiency = st.slider("Glean Efficiency Gain (%)", 10, 50, 40)
@@ -43,23 +69,23 @@ def render_roi_page():
     with col1:
         st.markdown(f"""
         <div class="glean-card-primary">
-            <h3 style="color:rgba(255,255,255,0.9); margin:0; font-size:14px;">Projected Annual Net Savings</h3>
+            <h3 style="color:rgba(255,255,255,1); margin:0; font-size:36px;">Projected Annual Net Savings</h3>
             <h1 style="color:white; margin:10px 0; font-size:36px;">${annual_net_savings:,.0f}</h1>
-            <div style="color:#A7F3D0; font-weight:700;">⬆ {efficiency}% Efficiency Model</div>
+            <div style="color:#D8FD49; font-weight:700;">⬆ {efficiency}% Efficiency Model</div>
         </div>
         """, unsafe_allow_html=True)
 
     with col2:
         st.markdown(f"""
         <div class="glean-card-secondary">
-            <h3 style="color:rgba(255,255,255,0.9); margin:0; font-size:14px;">Monthly Net Savings</h3>
+            <h3 style="color:rgba(255,255,255,1); margin:0; font-size:36px;">Monthly Net Savings</h3>
             <h1 style="color:white; margin:10px 0; font-size:36px;">${monthly_net_savings:,.0f}</h1>
-            <div style="color:rgba(255,255,255,0.8);">After License Costs</div>
+            <div style="color:rgba(255,255,255,0.9);">After License Costs</div>
         </div>
         """, unsafe_allow_html=True)
 
     # --- Cumulative Graph (Payback Logic) ---
-    months = list(range(13))
+    months = list(range(11))
     # Month 0 starts at negative Implementation Cost
     # Month 1 = -Imp + NetSavings, etc.
     cumulative_savings = [-implementation_cost + (monthly_net_savings * m) for m in months]
@@ -74,21 +100,31 @@ def render_roi_page():
         mode='lines+markers',
         name='Net Cash Flow',
         line=dict(color='#2750DD', width=3),
-        # TRANSPARENT BLUE FILL (Professional Look)
+        # TRANSPARENT BLUE FILL
         fill='tozeroy',
-        fillcolor='rgba(39, 80, 221, 0.1)'
+        fillcolor='rgba(52, 60, 237, 0.2)'
     ))
 
     # Add "Break Even" Annotation if applicable
     if payback_month:
-        fig.add_vline(x=payback_month, line_width=1, line_dash="dash", line_color="green")
-        fig.add_annotation(x=payback_month, y=0, text="Break Even", showarrow=True, arrowhead=1)
+        fig.add_vline(x=payback_month, line_width=1, line_dash="dash", line_color="#10B981")
+        fig.add_annotation(
+            x=payback_month, 
+            y=0, 
+            text="<b>Break Even</b>", 
+            showarrow=True, 
+            arrowhead=1,
+            arrowwidth=3,
+            arrowcolor="#10B981",
+            font=dict(color="#10B981", size=15),
+            ay=-44
+        )
 
     fig.update_layout(
         title="Cumulative Net Cash Flow (Year 1)",
         xaxis_title="Month",
         yaxis_title="Net Savings ($)",
-        font=dict(family="GleanSans", color="#0F172A"),
+        font=dict(family="PolySans Neutral", color="#0F172A"),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         hovermode="x unified",
@@ -99,7 +135,7 @@ def render_roi_page():
     # --- Logic Breakdown ---
     with st.expander("View Calculation Logic"):
         breakdown_html = f"""
-        <div style="font-family: 'GleanSans', sans-serif; color: #0F172A; line-height: 1.8;">
+        <div style="font-family: 'PolySans Neutral', sans-serif; color: #0F172A; line-height: 1.8;">
             <p><strong>Methodology:</strong> 70% Active Adoption Rate assumed.</p>
             <ul style="list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 8px;">

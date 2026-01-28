@@ -2,7 +2,7 @@
 
 /* Global Font Application */
 html, body, [class*="css"] {
-    font-family: 'GleanSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'PolySans Neutral', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Body & Background */
@@ -81,7 +81,7 @@ button[kind="primary"]:hover,
     font-weight: 700;
     color: #0F172A;
     margin-bottom: 0.25rem;
-    font-family: 'GleanSans', sans-serif;
+    font-family: 'PolySans Neutral', sans-serif;
 }
 
 .metric-delta {
@@ -96,7 +96,7 @@ button[kind="primary"]:hover,
 
 /* Headers */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'GleanSans', sans-serif !important;
+    font-family: 'PolySans Median', sans-serif !important;
     color: #0F172A !important;
 }
 
@@ -137,6 +137,7 @@ h2 {
 .streamlit-expanderHeader {
     border-radius: 8px !important;
     font-weight: 600 !important;
+    font-family: 'PolySans Neutral', sans-serif !important;
 }
 
 /* Info/Success/Warning Box Styling */

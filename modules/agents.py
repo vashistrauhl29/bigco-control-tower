@@ -22,8 +22,8 @@ def render_agents_page():
             bgcolor="transparent";
 
             // Nodes Styling (Glean Rounded Boxes)
-            node [shape=box, style="filled,rounded", fontname="GleanSans", fontsize=12, margin=0.25, penwidth=0];
-            edge [fontname="GleanSans", fontsize=10, color="#64748B", arrowsize=0.8];
+            node [shape=box, style="filled,rounded", fontname="PolySans Neutral", fontsize=12, margin=0.25, penwidth=0];
+            edge [fontname="PolySans Neutral", fontsize=10, color="#64748B", arrowsize=0.8];
 
             // Define Nodes with Specific Glean Colors
             User [label="User Query", fillcolor="#2750DD", fontcolor="white"];
@@ -41,7 +41,7 @@ def render_agents_page():
     ''')
 
     workflow_html = """
-    <div style="font-family: 'GleanSans', sans-serif; font-size: 16px; color: #0F172A; line-height: 1.8; margin-top: 1rem;">
+    <div style="font-family: 'PolySans Neutral', sans-serif; font-size: 16px; color: #0F172A; line-height: 1.8; margin-top: 1rem;">
         <div style="font-weight: 600; margin-bottom: 0.5rem;">Workflow Breakdown:</div>
         <ol style="margin-left: 1.5rem;">
             <li><span style="font-weight: 600;">User Query</span> - User submits a natural language request</li>
