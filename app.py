@@ -34,6 +34,10 @@ def load_custom_css():
         <style>
         /* --- 1. GLOBAL RESET --- */
         @font-face {{ font-family: 'PolySans Neutral'; src: url(data:font/ttf;base64,{font_neutral}) format('truetype'); font-weight: 400; }}
+        /* Map Bold Neutral to Median to prevent faux-bold (hazy text) */
+        @font-face {{ font-family: 'PolySans Neutral'; src: url(data:font/ttf;base64,{font_median}) format('truetype'); font-weight: 700; }}
+        @font-face {{ font-family: 'PolySans Neutral'; src: url(data:font/ttf;base64,{font_median}) format('truetype'); font-weight: 600; }}
+        
         @font-face {{ font-family: 'PolySans Median'; src: url(data:font/ttf;base64,{font_median}) format('truetype'); font-weight: 700; }}
 
         /* --- 2. INTELLIGENT FONT TARGETING --- */
@@ -64,6 +68,12 @@ def load_custom_css():
         /* --- SIDEBAR SPECIFIC OVERRIDES --- */
         section[data-testid="stSidebar"] * {{
             font-family: 'PolySans Neutral', sans-serif !important;
+        }}
+        /* Restore Material Icons Font */
+        section[data-testid="stSidebar"] .material-symbols-rounded,
+        section[data-testid="stSidebar"] button[kind="header"] span,
+        [data-testid="stSidebarNav"] span {{
+            font-family: 'Material Symbols Rounded' !important;
         }}
         .stCheckbox label p {{
             font-family: 'PolySans Neutral', sans-serif !important;
