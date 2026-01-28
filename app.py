@@ -69,12 +69,15 @@ def load_custom_css():
         section[data-testid="stSidebar"] * {{
             font-family: 'PolySans Neutral', sans-serif !important;
         }}
-        /* Restore Material Icons Font */
-        section[data-testid="stSidebar"] .material-symbols-rounded,
-        section[data-testid="stSidebar"] button[kind="header"] span,
-        [data-testid="stSidebarNav"] span {{
+        
+        /* Restore Material Icons Font - Specific Fix for Collapse Button */
+        section[data-testid="stSidebar"] button[kind="header"] *,
+        section[data-testid="stSidebar"] [data-testid="stSidebarCollapseButton"] *,
+        [data-testid="stSidebarNav"] span,
+        .material-symbols-rounded {{
             font-family: 'Material Symbols Rounded' !important;
         }}
+
         .stCheckbox label p {{
             font-family: 'PolySans Neutral', sans-serif !important;
         }}
@@ -189,7 +192,7 @@ def load_custom_css():
         .glean-card-primary h1 {{ color: white !important; font-size: 36px !important; margin: 0 0 10px 0 !important; font-weight: 700 !important; }}
 
         .glean-card-secondary {{
-            background: linear-gradient(135deg, #0EA5E9 0%, #D8FD49 100%);
+            background: linear-gradient(135deg, #0EA5E9 0%, #B8D73E 100%);
             border-radius: 16px; padding: 24px; color: white !important;
             box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.2); margin-bottom: 20px;
         }}
